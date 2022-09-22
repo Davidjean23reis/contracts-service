@@ -1,18 +1,17 @@
-import { Request, Response } from "express"
-import ContractModel from "../model/Contract.model"
+import { Request, Response } from "express";
+import ContractModel from "../model/Contract.model";
 
 const Contractcontroller = {
   async index(req: Request, res: Response): Promise<Response> {
-    let contractsservice = await ContractModel.find()
+    let contractsservice = await ContractModel.find();
     return res.json(contractsservice);
   },
 
   async findyById(req: Request, res: Response): Promise<Response> {
     const { id } = req.params;
-    let contractsservice = await ContractModel.findById(id)
-    return res.json(contractsservice)
+    let contractsservice = await ContractModel.findById(id);
+    return res.json(contractsservice);
   },
-
   async create(req: Request, res: Response): Promise<Response> {
     const {
       Name,
@@ -22,11 +21,20 @@ const Contractcontroller = {
       Rendamensal,
       Datadenascimento,
       Estadocivil,
-      Endereço } = req.body
-    
-    let contractsservice = await ContractModel.create(req.body)
-    return res.json(contractsservice)
+      Endereço,
+    } = req.body;
+    let contractsservice = await ContractModel.create(req.body);
+    return res.json(contractsservice);
   },
-}
-
-export default Contractcontroller
+  async update(req: Request, res: Response): Promise<Response> {
+    const { id } = req.params;
+    let contractsservice = await ContractModel.findByIdAndUpdate(id, req.body);
+    return res.json(contractsservice);
+  },
+    async delete(req: Request, res: Response): Promise<Response> {
+    const { id } = req.params;
+    let contractsservice = await ContractModel.findByIdAndDelete(id);
+    return res.json(contractsservice);
+  },
+};
+export default Contractcontroller;
