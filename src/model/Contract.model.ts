@@ -1,18 +1,18 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Schema } from "mongoose"
 
-const ContractsServices = new Schema(
+const Contractsservices = new Schema(
   {
-    Nome: String,
+    Name: String,
     Email: String,
     CPF: Number,
     Valordoemprestimo: Number,
     Rendamensal: Number,
     Datadenascimento: Number,
-    Estadocivil: Number,
+    Estadocivil: String,
     Endereço: String,
   },
 
   { timestamps: true }
-);
+)
 
-export default mongoose.model("Contractsservice",ContractsServices)
+export default mongoose.model("Contractsservice",Contractsservices)
