@@ -7,9 +7,10 @@ const Contractsservices = new Schema(
     CPF: Number,
     Valordoemprestimo: Number,
     Rendamensal: Number,
-    Datadenascimento: Number,
+    Datadenascimento: String,
     Estadocivil: String,
     Endereço: String,
+    Status: String,
   },
 
   { timestamps: true }

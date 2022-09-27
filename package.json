@@ -19,6 +19,7 @@
   "homepage": "https://github.com/Davidjean23reis/contracts-service#readme",
   "devDependencies": {
     "@types/express": "^4.17.14",
+    "@types/multer": "^1.4.7",
     "ts-node-dev": "^2.0.0",
     "typescript": "^4.8.3"
   },
