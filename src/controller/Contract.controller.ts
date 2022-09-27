@@ -22,6 +22,9 @@ const Contractcontroller = {
   },
   async create(req: Request, res: Response): Promise<Response> {
     try {
+      if (!req.body.Name) {
+        return res.json({ message: "o name é obrigatorio" });
+      }
       if (!req.body.CPF) {
         return res.json({ message: "o campo cpf é obrigatorio" });
       }
