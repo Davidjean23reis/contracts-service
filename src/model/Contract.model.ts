@@ -11,7 +11,7 @@ const Contractsservices = new Schema(
     Estadocivil: String,
     Endereço: String,
     Status: String,
-  },
+     },
 
   { timestamps: true }
 )
