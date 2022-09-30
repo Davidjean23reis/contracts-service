@@ -50,18 +50,15 @@ const Contractcontroller = {
       if (emailJaexiste) {
         return res.json({ message: "o email já existe" });
       }
-
-      const newContract = req.body;
+     const newContract = req.body;
       newContract.Status = "criação";
       const createContracts = await ContractModel.create(newContract);
-
-      return res.json(createContracts);
+       return res.json(createContracts);
     } catch (error) {
       return res.json(error);
     }
-
   },
-  async update(req: Request, res: Response): Promise<Response> {
+   async update(req: Request, res: Response): Promise<Response> {
     try {
       const { id } = req.params;
       const contractsservice = await ContractModel.findByIdAndUpdate(
