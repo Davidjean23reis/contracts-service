@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import ContractModel from "../model/Contract.model";
-
 const Contractcontroller = {
   async index(req: Request, res: Response): Promise<Response> {
     try {
@@ -10,8 +9,7 @@ const Contractcontroller = {
       return res.json(error);
     }
   },
-
-  async findyById(req: Request, res: Response): Promise<Response> {
+    async findyById(req: Request, res: Response): Promise<Response> {
     try {
       const { id } = req.params;
       const contractsservice = await ContractModel.findById(id);
@@ -50,27 +48,29 @@ const Contractcontroller = {
       if (emailJaexiste) {
         return res.json({ message: "o email já existe" });
       }
-     const newContract = req.body;
+      const newContract = req.body;
       newContract.Status = "criação";
       const createContracts = await ContractModel.create(newContract);
-       return res.json(createContracts);
+      return res.json(createContracts);
     } catch (error) {
       return res.json(error);
     }
   },
    async update(req: Request, res: Response): Promise<Response> {
-    try {
+    try { 
       const { id } = req.params;
-      const contractsservice = await ContractModel.findByIdAndUpdate(
-        id,
-        req.body
-      );
+      const contract = await ContractModel.findById(id)  
+      if(contract.Status =='aprovação'||contract.Status=='reprovado') {
+        return res.json({message:`Esse contrato está ${contract.Status}`})
+
+      }
+      const contractsservice = await ContractModel.findByIdAndUpdate( id,req.body);
       return res.json(contractsservice);
     } catch (error) {
       return res.json(error);
     }
   },
-  async delete(req: Request, res: Response): Promise<Response> {
+    async delete(req: Request, res: Response): Promise<Response> {
     try {
       const { id } = req.params;
       const contractsservice = await ContractModel.findByIdAndDelete(id);
@@ -78,7 +78,6 @@ const Contractcontroller = {
     } catch (error) {
       return res.json(error);
     }
-
   },
 };
 export default Contractcontroller;
